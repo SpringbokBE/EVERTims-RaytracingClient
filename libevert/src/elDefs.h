@@ -159,9 +159,17 @@ template <class T> inline const T& max2 (const T& a, const T& b)
     else{ return b; }
 }
 
-inline float frand(void)
+/**
+ * Returns a random floating point between 0.0 and 1.0.
+ * @return Random floating point between 0.0 and 1.0.
+ */
+inline float frand()
 {
-	return (float)arc4random() / (float)RAND_MAX;
+   #ifdef WIN32
+    return (float) rand() / (float) RAND_MAX;
+  #else
+	 return (float) arc4random() / (float) RAND_MAX;
+  #endif
 }
 
 //------------------------------------------------------------------------
