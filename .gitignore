@@ -1,8 +1,19 @@
-# MacOS
+# OS generated files #
+######################
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-# Build
-build/macos/build
-bin
+# Build directories #
+#####################
+libevert/build/linux
+libevert/build/macos
+libevert/build/windows_64
 
-# XCode
+# Build files #
+###############
+libevert/build/Makefile
