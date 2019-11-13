@@ -18,14 +18,14 @@ add_library(evert
     src/elBeam.cc
     src/elBSP.cc
     src/elListener.cc
+    src/elMaterial.cc
     src/elOrientedPoint.cc
-    src/elPolygon.cc
     src/elPathSolution.cc
-    src/elRoom.cc
+    src/elPolygon.cc
     src/elRay.cc
+    src/elRoom.cc
     src/elSource.cc
     src/elVector.cc
-    src/material.cc
   )
 
 # Link against OpenGL.

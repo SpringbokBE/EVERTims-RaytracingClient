@@ -39,7 +39,7 @@
 
 #include "elAABB.h"
 #include "elVector.h"
-#include "material.h"
+#include "elMaterial.h"
 
 namespace EL
 {

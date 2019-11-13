@@ -47,7 +47,7 @@
 #endif
 
 #include "solver.h"
-#include "material.h"
+#include "elMaterial.h"
 #include "utils.h"
 
 // #include "graphics.h"

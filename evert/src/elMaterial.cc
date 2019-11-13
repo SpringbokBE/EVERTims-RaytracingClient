@@ -35,7 +35,7 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "material.h"
+#include "elMaterial.h"
 
 using namespace std;
 

@@ -39,7 +39,7 @@
 #include "elPolygon.h"
 #include "elSource.h"
 #include "elVector.h"
-#include "material.h"
+#include "elMaterial.h"
 
 namespace EL
 {
