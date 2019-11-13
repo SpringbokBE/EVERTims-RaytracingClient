@@ -1,30 +1,39 @@
-cmake_minimum_required(VERSION 2.6)
+# Specify CMake requirements.
+cmake_minimum_required(VERSION 3.1...3.15)
 
-set (PROJECT evert)
-project (${PROJECT})
+if(${CMAKE_VERSION} VERSION_LESS 3.12)
+    cmake_policy(VERSION ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION})
+endif()
 
-set (EVERT_SOURCES
+# Specify project.
+project(evert
+  VERSION 1.0
+  DESCRIPTION "C++ Raytracing routines"
+  LANGUAGES CXX
+  )
+
+# Specify the library.
+add_library(evert
+  SHARED
+    src/elBeam.cc
     src/elBSP.cc
-    src/elOrientedPoint.cc
-    src/elVector.cc
-    src/elRay.cc
     src/elListener.cc
+    src/elOrientedPoint.cc
+    src/elPolygon.cc
     src/elPathSolution.cc
     src/elRoom.cc
-    src/material.cc
+    src/elRay.cc
     src/elSource.cc
-    src/elPolygon.cc
-    src/elBeam.cc
-    )
+    src/elVector.cc
+    src/material.cc
+  )
 
+# Link against OpenGL.
 find_package(OpenGL REQUIRED)
-include_directories(${OPENGL_INCLUDE_DIR})
-link_libraries(${OPENGL_LIBRARIES})
-
-add_library (${PROJECT} SHARED ${EVERT_SOURCES})
+target_include_directories(evert PUBLIC ${OPENGL_INCLUDE_DIR})
+target_link_libraries(evert PUBLIC ${OPENGL_LIBRARIES})
 
 add_definitions ("-D__${CMAKE_SYSTEM_NAME}")
-
 file (WRITE ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT}Config.cmake
 "\
 set (evert_INCLUDE_DIRS ${CMAKE_INSTALL_PREFIX}/include/evert)
@@ -44,4 +53,3 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/src/ DESTINATION include/${PROJECT
 install(
     FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT}Config.cmake
     DESTINATION lib/cmake/${PROJECT})
-

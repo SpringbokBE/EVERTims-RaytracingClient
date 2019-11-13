@@ -1,24 +1,24 @@
 /*************************************************************************
  *
- * This file is part of the EVERT Library / EVERTims program for room 
+ * This file is part of the EVERT Library / EVERTims program for room
  * acoustics simulation.
  *
- * This program is free software; you can redistribute it and/or modify it under 
- * the terms of the GNU General Public License as published by the Free Software 
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or any later version.
  *
- * THIS PROGRAM IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL; BUT WITHOUT 
- * ANY WARRANTY; WITHIOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS 
- * FOR A PARTICULAR PURPOSE. 
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+ * THIS PROGRAM IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL; BUT WITHOUT
+ * ANY WARRANTY; WITHIOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS
+ * FOR A PARTICULAR PURPOSE.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  * See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License along with 
- * this program; if not, see https://www.gnu.org/licenses/gpl-2.0.html or write 
- * to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, 
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, see https://www.gnu.org/licenses/gpl-2.0.html or write
+ * to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
  *
  * Copyright
@@ -30,14 +30,12 @@
  * IRCAM-CNRS-UPMC UMR9912 STMS
  *
  ************************************************************************/
- 
 
-#ifndef __ELVECTOR_HPP
-#define __ELVECTOR_HPP
 
-#if !defined (__ELDEFS_HPP)
-    #include "elDefs.h"
-#endif
+#ifndef EVERT_ELVECTOR_H_
+#define EVERT_ELVECTOR_H_
+
+#include "elDefs.h"
 
 #include <cmath>
 
@@ -53,9 +51,9 @@ class Matrix3x4;
 
 class Matrix3
 {
-    
+
 public:
-    
+
     EL_FORCE_INLINE	Matrix3 ();
     EL_FORCE_INLINE	Matrix3 (const Matrix3& m);
     EL_FORCE_INLINE	Matrix3 (float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22);
@@ -74,25 +72,25 @@ public:
     EL_FORCE_INLINE void identity (void);
     EL_FORCE_INLINE void transpose (void);
     EL_FORCE_INLINE float det (void) const;
-    
+
     bool invert			(void);
     void rotate (float radians, const Vector3& aboutThis);
     const Vector3 toEuler (void) const;
-    
-    
+
+
 private:
-    
+
     float							matrix[3][3];
-    
+
 };
 
 //------------------------------------------------------------------------
 
 class Matrix3x4
 {
-    
+
 public:
-    
+
     EL_FORCE_INLINE Matrix3x4 (void);
     EL_FORCE_INLINE	Matrix3x4 (const Matrix3& m);
     EL_FORCE_INLINE	Matrix3x4 (const Matrix3x4& m);
@@ -117,10 +115,10 @@ public:
     EL_FORCE_INLINE	float det (void) const;
     void rotate (float radians, const Vector3& aboutThis);
     EL_FORCE_INLINE void translate (const Vector3& v);
-    
-    
+
+
 private:
-    
+
     float							matrix[3][4];
 };
 
@@ -204,7 +202,7 @@ EL_FORCE_INLINE void			Matrix3::operator*=	(float f)						{ for(int i=0;i<3;i++)
 EL_FORCE_INLINE void			Matrix3::identity	(void)							{ for(int i=0;i<3;i++) for(int j=0;j<3;j++) matrix[i][j] = (i == j) ? float(1) : float(0); }
 EL_FORCE_INLINE void			Matrix3::transpose	(void)							{ swap(matrix[1][0], matrix[0][1]); swap(matrix[2][0], matrix[0][2]); swap(matrix[2][1], matrix[1][2]); }
 EL_FORCE_INLINE float			Matrix3::det		(void) const					{ return matrix[0][0] * (matrix[1][1]*matrix[2][2] - matrix[2][1]*matrix[1][2]) + matrix[0][1] * (matrix[2][0]*matrix[1][2] - matrix[1][0]*matrix[2][2]) + matrix[0][2] * (matrix[1][0]*matrix[2][1] - matrix[2][0]*matrix[1][1]); }
-    
+
 //------------------------------------------------------------------------
 
 EL_FORCE_INLINE bool			operator==	(const Matrix3x4& m1, const Matrix3x4& m2)	{ for(int i=0;i<3;i++) for(int j=0;j<4;j++) if(m1[i][j] != m2[i][j]) return false; return true; }
@@ -278,4 +276,4 @@ EL_FORCE_INLINE Vector4			normalize	(const Vector4& p)						{ float len = sqrtf(
 //------------------------------------------------------------------------
 } // namespace EL
 
-#endif // __ELVECTOR_HPP
+#endif // EVERT_ELVECTOR_H_
