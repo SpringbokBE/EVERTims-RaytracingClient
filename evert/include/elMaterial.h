@@ -58,4 +58,4 @@ private:
   std::map<std::string, Material> m_lib;
 };
 
-#endif EVERT_MATERIAL_H_
+#endif // EVERT_MATERIAL_H_
