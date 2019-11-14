@@ -1,24 +1,24 @@
 /*************************************************************************
  *
- * This file is part of the EVERT Library / EVERTims program for room 
+ * This file is part of the EVERT Library / EVERTims program for room
  * acoustics simulation.
  *
- * This program is free software; you can redistribute it and/or modify it under 
- * the terms of the GNU General Public License as published by the Free Software 
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or any later version.
  *
- * THIS PROGRAM IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL; BUT WITHOUT 
- * ANY WARRANTY; WITHIOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS 
- * FOR A PARTICULAR PURPOSE. 
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
- * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+ * THIS PROGRAM IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL; BUT WITHOUT
+ * ANY WARRANTY; WITHIOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS
+ * FOR A PARTICULAR PURPOSE.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  * See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License along with 
- * this program; if not, see https://www.gnu.org/licenses/gpl-2.0.html or write 
- * to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, 
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, see https://www.gnu.org/licenses/gpl-2.0.html or write
+ * to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
  *
  * Copyright
@@ -159,20 +159,15 @@ template <class T> inline const T& max2 (const T& a, const T& b)
     else{ return b; }
 }
 
-/**
- * Returns a random floating point between 0.0 and 1.0.
- * @return Random floating point between 0.0 and 1.0.
- */
 inline float frand()
+/**
+* Returns a random floating point between 0.0 and 1.0.
+* @return Random floating point between 0.0 and 1.0.
+*/
 {
-   #ifdef WIN32
-    return (float) rand() / (float) RAND_MAX;
-  #else
-	 return (float) arc4random() / (float) RAND_MAX;
-  #endif
+  return (float) rand() / (float) RAND_MAX;
 }
 
-//------------------------------------------------------------------------
-}	   // namespace EL
+} // namespace EL
 
 #endif // __ELDEFS_HPP
