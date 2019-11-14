@@ -12,6 +12,7 @@ project(evert
   LANGUAGES CXX
   )
 
+
 # Specify the library.
 add_library(evert
   SHARED
@@ -28,10 +29,34 @@ add_library(evert
     src/elVector.cc
   )
 
+# Specify the dependencies.
+add_dependencies(evert GLEW::GLEW)
+find_package(GLEW REQUIRED COMPONENTS GLEW)
+
+# Specify the includes.
+target_include_directories(evert
+  PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+  )
+
+# Specify the libraries to link against.
+target_link_libraries(evert
+  PRIVATE
+    GLEW::GLEW
+  )
+
+# if(UNIX)
+# elseif(WIN32)
+#   target_sources(evert
+#     PRIVATE
+#   )
+# endif(UNIX)
+
 # Link against OpenGL.
-find_package(OpenGL REQUIRED)
-target_include_directories(evert PUBLIC ${OPENGL_INCLUDE_DIR})
-target_link_libraries(evert PUBLIC ${OPENGL_LIBRARIES})
+# find_package(OpenGL REQUIRED)
+# target_include_directories(evert PRIVATE ${OPENGL_INCLUDE_DIR})
+# target_link_libraries(evert PRIVATE ${OPENGL_LIBRARIES})
 
 add_definitions ("-D__${CMAKE_SYSTEM_NAME}")
 file (WRITE ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT}Config.cmake

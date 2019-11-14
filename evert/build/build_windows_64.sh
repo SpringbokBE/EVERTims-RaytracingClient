@@ -85,6 +85,25 @@ function find_mxe_cmake
   fi
 }
 
+function find_mxe_glew
+# Find the MXE `glew` package (M Cross Environment).
+{
+  # if [ -f "$MXE_PATH/usr/x86_64-pc-linux-gnu/installed/cmake" ] &&
+  #    [ -f "$MXE_PATH/usr/x86_64-pc-linux-gnu/installed/cmake-conf" ] &&
+  #    [ -f "$MXE_PATH/usr/x86_64-w64-mingw32.shared/installed/cmake-conf" ]
+  then
+      echo -e "\e[32m-- Found MXE \`glew\` package!"
+  else
+    echo -e "\e[31m-- Didn't find the \`glew\` package from MXE!"
+    echo -e "\e[35m-- Please make sure you've built the MXE \`glew\` package for target \`x86_64-w64-mingw32.shared\`!"
+    read -rsn1 -p $'\e[35m-- Do you want to build it now? This might take a while (~ min)! (yY/nN)]\n' want_build_mxe_glew
+    case "$want_build_mxe_glew" in
+      y|Y) build_mxe_package glew;;
+      *) report_failure;;
+    esac
+  fi
+}
+
 function download_mxe
 # Download the MXE (M Cross Environment).
 {
@@ -119,8 +138,15 @@ function build_libevert
 # Build the libevert library.
 {
   echo -e "\e[35m-- Starting libevert build..."
+
   BUILD_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" > /dev/null 2>&1 && pwd)"
   cd $BUILD_DIR
+
+  if [ -d "windows_64" ]
+  then
+    rm -rf "windows_64"
+  fi
+
   mkdir windows_64
   cd ..
   x86_64-w64-mingw32.shared-cmake -I . -B build/windows_64
