@@ -80,7 +80,7 @@ public:
     }
 
     const Vector4& getPleq (void) const { return m_pleq;   }
-    const Vector3& getNormal (void) const { return *((const Vector3*)&m_pleq); }
+    Vector3 getNormal (void) const { return Vector3( m_pleq.x, m_pleq.y, m_pleq.z ); }
 
     bool isConvex (void) const;
     float getNonPlanarity (void) const;
