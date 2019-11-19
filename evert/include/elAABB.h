@@ -48,7 +48,7 @@ namespace EL
       EL_FORCE_INLINE AABB( const Vector3& mn, const Vector3& mx ) : m_mn(mn), m_mx(mx) {}
       EL_FORCE_INLINE AABB( const AABB& aabb ) : m_mn(aabb.m_mn), m_mx(aabb.m_mx) {}
       EL_FORCE_INLINE ~AABB() {}
-      EL_FORCE_INLINE const AABB&	operator= ( const AABB& aabb ) { m_mn = aabb.m_mn; m_mx = aabb.m_mx; }
+      EL_FORCE_INLINE const AABB&	operator= ( const AABB& aabb ) { m_mn = aabb.m_mn; m_mx = aabb.m_mx; return *this; }
 
       EL_FORCE_INLINE void grow ( const Vector3& p )
       {
