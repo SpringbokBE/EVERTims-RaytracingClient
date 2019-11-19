@@ -31,7 +31,11 @@
  *
  ************************************************************************/
 
-#include <GL/glew.h>
+ #ifdef __Darwin
+ 	#include <OpenGL/gl.h>
+ #else
+ 	#include <GL/gl.h>
+ #endif
 
 #include "elBSP.h"
 #include "elRoom.h"

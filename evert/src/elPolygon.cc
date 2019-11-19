@@ -31,15 +31,21 @@
  *
  ************************************************************************/
 
-#include <GL/glew.h>
+ #ifdef __Darwin
+ 	#include <OpenGL/gl.h>
+ 	#include <OpenGL/glu.h>
+ #else
+ 	#include <GL/gl.h>
+ 	#include <GL/glu.h>
+ #endif
 
 #include <stdio.h>
 #include "elPolygon.h"
 #include "elAABB.h"
 #include "elBeam.h"
 
-using namespace EL;
-
+namespace EL
+{
 //------------------------------------------------------------------------
 
 unsigned long Polygon::s_polygonCounter = 0;
@@ -698,3 +704,5 @@ void Polygon::expand (float eps)
 	glEnd();
  }
  */
+
+} // namespace EL

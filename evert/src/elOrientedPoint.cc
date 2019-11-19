@@ -31,7 +31,12 @@
  *
  ************************************************************************/
 
-#include <GL/glew.h>
+#ifdef __Darwin
+	#include <OpenGL/gl.h>
+#else
+	#include <GL/gl.h>
+#endif
+
 #include "elOrientedPoint.h"
 
 using namespace EL;
