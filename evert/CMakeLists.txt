@@ -12,7 +12,6 @@ project(evert
   LANGUAGES CXX
   )
 
-
 # Specify the library.
 add_library(evert
   SHARED
@@ -23,15 +22,14 @@ add_library(evert
     src/elOrientedPoint.cc
     src/elPathSolution.cc
     src/elPolygon.cc
-    src/elRay.cc
     src/elRoom.cc
     src/elSource.cc
     src/elVector.cc
   )
 
 # Specify the dependencies.
-add_dependencies(evert GLEW::GLEW)
-find_package(GLEW REQUIRED COMPONENTS GLEW)
+add_dependencies(evert OpenGL::GL OpenGL::GLU)
+find_package(OpenGL REQUIRED)
 
 # Specify the includes.
 target_include_directories(evert
@@ -43,28 +41,20 @@ target_include_directories(evert
 # Specify the libraries to link against.
 target_link_libraries(evert
   PRIVATE
-    GLEW::GLEW
+    OpenGL::GL
+    OpenGL::GLU
   )
 
-# if(UNIX)
-# elseif(WIN32)
-#   target_sources(evert
-#     PRIVATE
-#   )
-# endif(UNIX)
+target_compile_options(evert PRIVATE -Wall)
 
-# Link against OpenGL.
-# find_package(OpenGL REQUIRED)
-# target_include_directories(evert PRIVATE ${OPENGL_INCLUDE_DIR})
-# target_link_libraries(evert PRIVATE ${OPENGL_LIBRARIES})
+# Still to be modified below this line.
 
 add_definitions ("-D__${CMAKE_SYSTEM_NAME}")
+
 file (WRITE ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT}Config.cmake
 "\
 set (evert_INCLUDE_DIRS ${CMAKE_INSTALL_PREFIX}/include/evert)
 set (evert_LIBRARIES ${CMAKE_INSTALL_PREFIX}/lib/libevert${CMAKE_SHARED_LIBRARY_SUFFIX})")
-
-# target_compile_options(evert PRIVATE -stdlib=libstdc++)
 
 install(
     TARGETS ${PROJECT}
