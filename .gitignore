@@ -12,7 +12,7 @@ Thumbs.db
 #####################
 evert/build/linux
 evert/build/macos
-evert/build/windows_64
+evert/build/win64
 
 # Build files #
 ###############

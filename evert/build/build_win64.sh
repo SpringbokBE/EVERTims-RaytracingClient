@@ -61,8 +61,8 @@ function find_mxe_cc
       y|Y) build_mxe_package cc;;
       *) report_failure;;
     esac
-    echo "export PATH=$MXE_PATH/usr/bin:\$PATH" >> $HOME/.bashrc
-    source $HOME/.bashrc
+    echo "export PATH=$MXE_PATH/usr/bin:\$PATH" >> $HOME/.bash_profile
+    source $HOME/.bash_profile
   fi
 }
 
@@ -80,25 +80,6 @@ function find_mxe_cmake
     read -rsn1 -p $'\e[35m-- Do you want to build it now? This might take a while (~15 min)! (yY/nN)]\n' want_build_mxe_cmake
     case "$want_build_mxe_cmake" in
       y|Y) build_mxe_package cmake;;
-      *) report_failure;;
-    esac
-  fi
-}
-
-function find_mxe_glew
-# Find the MXE `glew` package (M Cross Environment).
-{
-  # if [ -f "$MXE_PATH/usr/x86_64-pc-linux-gnu/installed/cmake" ] &&
-  #    [ -f "$MXE_PATH/usr/x86_64-pc-linux-gnu/installed/cmake-conf" ] &&
-  #    [ -f "$MXE_PATH/usr/x86_64-w64-mingw32.shared/installed/cmake-conf" ]
-  then
-      echo -e "\e[32m-- Found MXE \`glew\` package!"
-  else
-    echo -e "\e[31m-- Didn't find the \`glew\` package from MXE!"
-    echo -e "\e[35m-- Please make sure you've built the MXE \`glew\` package for target \`x86_64-w64-mingw32.shared\`!"
-    read -rsn1 -p $'\e[35m-- Do you want to build it now? This might take a while (~ min)! (yY/nN)]\n' want_build_mxe_glew
-    case "$want_build_mxe_glew" in
-      y|Y) build_mxe_package glew;;
       *) report_failure;;
     esac
   fi
@@ -142,15 +123,15 @@ function build_libevert
   BUILD_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" > /dev/null 2>&1 && pwd)"
   cd $BUILD_DIR
 
-  if [ -d "windows_64" ]
+  if [ -d "win64" ]
   then
-    rm -rf "windows_64"
+    rm -rf "win64"
   fi
 
-  mkdir windows_64
+  mkdir win64
   cd ..
-  x86_64-w64-mingw32.shared-cmake -I . -B build/windows_64
-  cd $BUILD_DIR/windows_64
+  x86_64-w64-mingw32.shared-cmake -I . -B build/win64
+  cd $BUILD_DIR/win64
   make
 
   echo -e "\e[35m-- Finished libevert build..."
@@ -173,8 +154,6 @@ function report_failure
   echo -e "\e[31m-- Build unsuccesful!"
   exit
 }
-
-source $HOME/.bashrc
 
 find_mxe
 find_mxe_cc
