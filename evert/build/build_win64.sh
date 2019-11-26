@@ -176,7 +176,7 @@ function report_start
   echo -e "\e[32m   |_____|  \_/  |_____|_| \_\|_|    "
   echo
   echo -e "\e[32m-------------------------------------"
-  echo -e "\e[32m--      Starting evert build!      --"
+  echo -e "\e[32m--      Starting EVERT build!      --"
   echo -e "\e[32m-------------------------------------"
   echo
 }
