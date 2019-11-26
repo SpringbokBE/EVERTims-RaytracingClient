@@ -169,15 +169,15 @@ function report_start
 # Report a build/installation start.
 {
   echo
-  echo -e "\e[32m    _______     _______ ____ _____   "
-  echo -e "\e[32m   | ____\ \   / / ____|  _ \_   _|  "
-  echo -e "\e[32m   |  _|  \ \ / /|  _| | |_) || |    "
-  echo -e "\e[32m   | |___  \ V / | |___|  _ < | |    "
-  echo -e "\e[32m   |_____|  \_/  |_____|_| \_\|_|    "
+  echo -e "\e[32m                 _______     _______ ____ _____                "
+  echo -e "\e[32m                | ____\ \   / / ____|  _ \_   _|               "
+  echo -e "\e[32m                |  _|  \ \ / /|  _| | |_) || |                 "
+  echo -e "\e[32m                | |___  \ V / | |___|  _ < | |                 "
+  echo -e "\e[32m                |_____|  \_/  |_____|_| \_\|_|                 "
   echo
-  echo -e "\e[32m-------------------------------------"
-  echo -e "\e[32m--      Starting EVERT build!      --"
-  echo -e "\e[32m-------------------------------------"
+  echo -e "\e[32m---------------------------------------------------------------"
+  echo -e "\e[32m--                   Starting EVERT build!                   --"
+  echo -e "\e[32m---------------------------------------------------------------"
   echo
 }
 
@@ -185,9 +185,9 @@ function report_success
 # Report a build/installation success.
 {
   echo
-  echo -e "\e[32m----------------------------------------------"
-  echo -e "\e[32m-- EVERT: Build and installation succesful! --"
-  echo -e "\e[32m----------------------------------------------"
+  echo -e "\e[32m---------------------------------------------------------------"
+  echo -e "\e[32m--         EVERT: Build and installation succesful!          --"
+  echo -e "\e[32m---------------------------------------------------------------"
   echo
   exit
 }
@@ -196,9 +196,9 @@ function report_failure
 # Report a build/installation failure.
 {
   echo
-  echo -e "\e[31m-----------------------------------------------"
-  echo -e "\e[31m-- EVERT: Build or installation unsuccesful! --"
-  echo -e "\e[31m-----------------------------------------------"
+  echo -e "\e[31m---------------------------------------------------------------"
+  echo -e "\e[31m--         EVERT: Build or installation unsuccesful!         --"
+  echo -e "\e[31m---------------------------------------------------------------"
   echo
   exit
 }
