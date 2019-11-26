@@ -149,7 +149,7 @@ function install_evert
   echo -e "\e[35m-- Starting EVERT installation..."
 
   cd $BUILD_DIR/win64
-  make DESTDIR="/home/springbok/Desktop" install | indent
+  make install | indent
 
   echo -e "\e[35m-- Finished EVERT installation..."
 }
