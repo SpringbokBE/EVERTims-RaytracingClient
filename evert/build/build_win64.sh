@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Build libevert for Windows using MXE cross-compiler on Linux.
+# Build EVERT for Windows using MXE cross-compiler on Linux.
 #
 
 function indent
@@ -121,10 +121,10 @@ function build_mxe_package
   echo -e "\e[35m-- Finished MXE \`$1\` package build..."
 }
 
-function build_libevert
-# Build the libevert library.
+function build_evert
+# Build the EVERT library.
 {
-  echo -e "\e[35m-- Starting libevert build..."
+  echo -e "\e[35m-- Starting EVERT build..."
 
   BUILD_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" > /dev/null 2>&1 && pwd)"
   cd $BUILD_DIR
@@ -140,18 +140,18 @@ function build_libevert
   cd $BUILD_DIR/win64
   make | indent
 
-  echo -e "\e[35m-- Finished libevert build..."
+  echo -e "\e[35m-- Finished EVERT build..."
 }
 
-function install_libevert
-# Install the libevert library.
+function install_evert
+# Install the EVERT library.
 {
-  echo -e "\e[35m-- Starting libevert installation..."
+  echo -e "\e[35m-- Starting EVERT installation..."
 
   cd $BUILD_DIR/win64
   make DESTDIR="/home/springbok/Desktop" install | indent
 
-  echo -e "\e[35m-- Finished libevert installation..."
+  echo -e "\e[35m-- Finished EVERT installation..."
 }
 
 function update_db
@@ -211,7 +211,7 @@ find_mxe
 find_mxe_cc
 find_mxe_cmake
 
-build_libevert
-install_libevert
+build_evert
+install_evert
 
 report_success
