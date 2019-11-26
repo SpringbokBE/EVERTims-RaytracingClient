@@ -14,6 +14,6 @@ evert/build/linux
 evert/build/macos
 evert/build/win64
 
-# Build files #
-###############
-evert/build/Makefile
+evertims/build/linux
+evertims/build/macos
+evertims/build/win64
