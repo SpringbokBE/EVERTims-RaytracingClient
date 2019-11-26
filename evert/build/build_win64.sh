@@ -4,6 +4,12 @@
 # Build libevert for Windows using MXE cross-compiler on Linux.
 #
 
+function indent
+# To be able to indent outputs of cmake, make etc.
+{
+  sed 's/^/         /'
+}
+
 function find_mxe
 # Find the MXE (M Cross Environment).
 {
@@ -90,7 +96,7 @@ function download_mxe
 {
   echo -e "\e[35m-- Starting MXE download..."
   cd $HOME
-  git clone https://github.com/mxe/mxe.git
+  git clone https://github.com/mxe/mxe.git | indent
   MXE_PATH="$HOME/mxe"
 
   echo -e "\e[35m-- Finished MXE download..."
@@ -105,11 +111,11 @@ function build_mxe_package
 
   if [ -w $MXE_PATH ]
   then
-    make MXE_TARGETS="x86_64-w64-mingw32.shared" $1
+    make MXE_TARGETS="x86_64-w64-mingw32.shared" $1 | indent
   else
     echo -e "\e[34m-- Password is required to be able to build the MXE \`$1\` package!"
     if [[ ! $(sudo echo 0) ]]; then exit; fi
-    sudo make MXE_TARGETS="x86_64-w64-mingw32.shared" $1
+    sudo make MXE_TARGETS="x86_64-w64-mingw32.shared" $1 | indent
   fi
 
   echo -e "\e[35m-- Finished MXE \`$1\` package build..."
@@ -130,11 +136,22 @@ function build_libevert
 
   mkdir win64
   cd ..
-  x86_64-w64-mingw32.shared-cmake -I . -B build/win64
+  x86_64-w64-mingw32.shared-cmake --no-warn-unused-cli -I . -B build/win64 | indent
   cd $BUILD_DIR/win64
-  make
+  make | indent
 
   echo -e "\e[35m-- Finished libevert build..."
+}
+
+function install_libevert
+# Install the libevert library.
+{
+  echo -e "\e[35m-- Starting libevert installation..."
+
+  cd $BUILD_DIR/win64
+  make DESTDIR="/home/springbok/Desktop" install | indent
+
+  echo -e "\e[35m-- Finished libevert installation..."
 }
 
 function update_db
@@ -143,20 +160,58 @@ function update_db
 {
   echo -e "\e[34m-- Password is required to be able to update the file database!"
   if [[ ! $(sudo echo 0) ]]; then exit; fi
-  sudo updatedb
+  sudo updatedb | indent
 
   MXE_PATH=$(locate mxe/Makefile | head -1)
 }
 
-function report_failure
-# Report a build failure.
+function report_start
+# Report a build/installation start.
 {
-  echo -e "\e[31m-- Build unsuccesful!"
+  echo
+  echo -e "\e[32m    _______     _______ ____ _____   "
+  echo -e "\e[32m   | ____\ \   / / ____|  _ \_   _|  "
+  echo -e "\e[32m   |  _|  \ \ / /|  _| | |_) || |    "
+  echo -e "\e[32m   | |___  \ V / | |___|  _ < | |    "
+  echo -e "\e[32m   |_____|  \_/  |_____|_| \_\|_|    "
+  echo
+  echo -e "\e[32m-------------------------------------"
+  echo -e "\e[32m--      Starting evert build!      --"
+  echo -e "\e[32m-------------------------------------"
+  echo
+}
+
+function report_success
+# Report a build/installation success.
+{
+  echo
+  echo -e "\e[32m----------------------------------------------"
+  echo -e "\e[32m-- EVERT: Build and installation succesful! --"
+  echo -e "\e[32m----------------------------------------------"
+  echo
   exit
 }
+
+function report_failure
+# Report a build/installation failure.
+{
+  echo
+  echo -e "\e[31m-----------------------------------------------"
+  echo -e "\e[31m-- EVERT: Build or installation unsuccesful! --"
+  echo -e "\e[31m-----------------------------------------------"
+  echo
+  exit
+}
+
+source $HOME/.bash_profile
+
+report_start
 
 find_mxe
 find_mxe_cc
 find_mxe_cmake
 
 build_libevert
+install_libevert
+
+report_success
