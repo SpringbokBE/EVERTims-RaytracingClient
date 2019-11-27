@@ -36,7 +36,8 @@
 #include <errno.h>
 #include <vector>
 #include <iostream>
-#include <time.h>
+#include <chrono>
+#include <thread>
 
 #include "solver.h"
 #include "elMaterial.h"
@@ -283,7 +284,7 @@ void Solver::interruptCalculation()
     
     EL::setStopSignalValue(true);
     // added usleep to avoid blocking while loop in osx (postponing the complete re-write? true :)  
-    while (!m_next_solution_flag){ usleep(1); };
+    while (!m_next_solution_flag){ this_thread::sleep_for( chrono::microseconds( 1 ) ); };
     EL::setStopSignalValue(false);
     
     pthread_mutex_lock (&next_solution_mutex);
@@ -500,7 +501,7 @@ void *path_solver_function (void *data)
             solver->calculateNextSolution ();
             COUT << "Thread " << pthread_self() << " finished calculation" << "\n";
         }
-        usleep( 2000 );
+        this_thread::sleep_for( chrono::seconds( 2 ) );
     }
 }
 
