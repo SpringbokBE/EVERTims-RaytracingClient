@@ -444,6 +444,10 @@ void AuralizationWriter::writeMinor(EL::PathSolution *solution, int listSrcOrBot
 
 #define ABS(x) ((x)>0 ? (x) : (-(x)))
 
+VisualizationWriter::VisualizationWriter( char * host ):
+Writer( host ),
+m_numLines( 0 )
+{};
 void VisualizationWriter::writeMajor(EL::PathSolution *solution)
 {
     int numLines = 1;

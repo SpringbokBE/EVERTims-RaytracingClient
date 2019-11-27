@@ -137,9 +137,9 @@ class VisualizationWriter : public Writer
 {
     
 public:
-    
-    VisualizationWriter (char *host): Writer(host), m_numLines(0) {};
-    
+
+    VisualizationWriter (char *host);
+
     virtual const char* getType() { return "VirChor"; };
     void writeMajor (EL::PathSolution *solution);
     void writeMinor (EL::PathSolution *solution, int listSrcOrBoth);
