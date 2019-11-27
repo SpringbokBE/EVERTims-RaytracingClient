@@ -41,11 +41,18 @@ target_link_libraries(evertims
     OpenGL::GLU
     Threads::Threads)
 
+target_compile_definitions(evertims
+  PRIVATE
+    __${CMAKE_SYSTEM_NAME})
+
+target_compile_features(evertims
+  PRIVATE
+    cxx_std_11)
+
 target_compile_options(evertims
   PRIVATE
     -Wfatal-errors)
 
-target_compile_definitions(evertims PRIVATE __${CMAKE_SYSTEM_NAME})
 
 install(TARGETS evertims
   LIBRARY DESTINATION lib

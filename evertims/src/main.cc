@@ -35,7 +35,8 @@
 #include <iostream>
 #include <vector>
 #include <getopt.h>
-#include <time.h>
+#include <chrono>
+#include <thread>
 
 #include "writer.h"
 #include "solver.h"
@@ -152,7 +153,7 @@ int main (int argc, char **argv)
     
     while (!re->geometryInitialized ())
     {
-        usleep ( 2000 ); // for mac, else calculation never starts...
+        this_thread::sleep_for( chrono::seconds( 2 ) );
     }
     COUT << "Got some geometry! \n";
     
@@ -162,7 +163,7 @@ int main (int argc, char **argv)
     while (1)
     {
         s->update ();
-        usleep ( 2000 );
+        this_thread::sleep_for( chrono::seconds( 2 ) );
     }
     
     delete re;
