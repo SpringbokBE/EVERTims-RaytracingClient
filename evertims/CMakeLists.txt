@@ -41,9 +41,9 @@ target_link_libraries(evertims
     OpenGL::GLU
     Threads::Threads)
 
-# target_compile_options(evertims
-#   PRIVATE
-#     -Wall)
+target_compile_options(evertims
+  PRIVATE
+    -Wfatal-errors)
 
 target_compile_definitions(evertims PRIVATE __${CMAKE_SYSTEM_NAME})
 

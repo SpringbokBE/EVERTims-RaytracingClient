@@ -157,6 +157,12 @@ function build_evertims
   cd $BUILD_DIR/win64
   make | indent
 
+  # See https://unix.stackexchange.com/questions/14270/get-exit-status-of-process-thats-piped-to-another.
+  if [ ${PIPESTATUS[0]} -gt 0 ] || [ ${pipestatus[1]} -gt 0 ]
+  then
+    report_failure
+  fi
+
   echo -e "\e[35m-- Finished EVERTims build..."
 }
 
