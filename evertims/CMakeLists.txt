@@ -22,9 +22,8 @@ project(evertims
 add_executable(evertims ${_SOURCES})
 
 # Specify the dependencies.
-add_dependencies(evertims evert::evert OpenGL::GL OpenGL::GLU Threads::Threads )
+add_dependencies(evertims evert::evert Threads::Threads )
 find_package(evert REQUIRED)
-find_package(OpenGL REQUIRED)
 find_package(Threads)
 
 # Specify the includes.
@@ -37,8 +36,6 @@ target_include_directories(evertims
 target_link_libraries(evertims
   PRIVATE
     evert::evert
-    OpenGL::GL
-    OpenGL::GLU
     Threads::Threads)
 
 target_compile_definitions(evertims

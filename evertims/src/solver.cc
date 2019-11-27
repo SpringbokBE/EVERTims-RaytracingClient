@@ -38,14 +38,6 @@
 #include <iostream>
 #include <time.h>
 
-#ifdef __Darwin
-    #include <OpenGL/gl.h>
-    #include <GLUT/glut.h>
-#else
-    #include <GL/gl.h>
-    #include <GL/glut.h>
-#endif
-
 #include "solver.h"
 #include "elMaterial.h"
 #include "utils.h"
