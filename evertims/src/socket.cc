@@ -44,8 +44,8 @@ void Socket::openSocket()
     int err;
     
 #ifdef WIN32
-    erreur=WSAStartup(MAKEWORD(2,2),&initialisation_win32);
-    if( erreur!=0 ){ printf("\nSorry, can't initialize Winsock due to error : %d %d",erreur,WSAGetLastError()); }
+    err=WSAStartup(MAKEWORD(2,2),&initialisation_win32);
+    if( err!=0 ){ printf("\nSorry, can't initialize Winsock due to error : %d %d",err,WSAGetLastError()); }
     else{ printf("\nWSAStartup  : OK"); }
 #endif
     
@@ -68,7 +68,7 @@ Socket::Socket(int port)
     
     openSocket();
     
-    // Bind the socket to an IP and a port for Listening (Lie la socket à une ip et un port d'écoute )
+    // Bind the socket to an IP and a port for Listening (Lie la socket ï¿½ une ip et un port d'ï¿½coute )
     int err = bind( m_socket_id,
                    (struct sockaddr*)&m_sockaddr,
                    sizeof(m_sockaddr) );
@@ -83,7 +83,6 @@ Socket::Socket(int port)
 Socket::Socket(char *host)
 {
     struct hostent *hostinfo;
-    int error;
     int port;
     
     char *s = strchr(host, ':');
@@ -117,27 +116,27 @@ Socket::Socket(char *host)
 //
 Socket::~Socket()
 {
-    int error;
+    int err;
     
     // ********************************************************
-    // Closing corresponding socket à command socket()
+    // Closing corresponding socket ï¿½ command socket()
     // ********************************************************
 #ifdef _WIN32
-    erreur=closesocket(id_socket_in);
+    err=closesocket(id_socket_in);
 #else
-    error=close(m_socket_id);
+    err=close(m_socket_id);
 #endif
-    if( error!=0 ){ printf("\nSorry, can't free socket due to error : %d",error); }
+    if( err!=0 ){ printf("\nSorry, can't free socket due to error : %d",err); }
     else{ printf("\nclosesocket : OK"); }
     
 #ifdef _WIN32
     // ******************************************************
     // Neatly quit the winsock opened with WSAStartup command
     // ******************************************************
-    erreur=WSACleanup(); // A appeler autant de fois qu'il a été ouvert.
-    if( erreur!=0 )
+    err=WSACleanup(); // A appeler autant de fois qu'il a ï¿½tï¿½ ouvert.
+    if( err!=0 )
     {
-        printf("\nDesole, je ne peux pas liberer winsock du a l'erreur : %d %d",erreur,WSAGetLastError());
+        printf("\nDesole, je ne peux pas liberer winsock du a l'erreur : %d %d",err,WSAGetLastError());
     }
     else{ printf("\nWSACleanup  : OK"); }
     
