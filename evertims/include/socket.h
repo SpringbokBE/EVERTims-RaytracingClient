@@ -62,8 +62,6 @@ typedef int SOCKET;
 #else
 #include <winsock2.h>
 #include <ws2tcpip.h>
-WSADATA initialisation_win32; // Variable permettant de récupérer la structure d'information sur l'initialisation
-WSADATA initialisation2_win32; // Variable permettant de récupérer la structure d'information sur l'initialisation
 #endif
 
 
@@ -86,6 +84,10 @@ private:
     
     int m_socket_id;
     struct sockaddr_in m_sockaddr;
+    
+    WSADATA initialisation_win32; // Variable permettant de récupérer la structure d'information sur l'initialisation
 };
 
 #endif
+
+
