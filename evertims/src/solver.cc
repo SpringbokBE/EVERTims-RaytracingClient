@@ -33,7 +33,7 @@
  
 
 #include <pthread.h>
-#include <sys/errno.h>
+#include <errno.h>
 #include <vector>
 #include <iostream>
 #include <time.h>
