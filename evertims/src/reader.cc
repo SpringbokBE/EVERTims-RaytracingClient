@@ -181,6 +181,26 @@ void parseFace(std::string msg,
     //  cout << p3[0] << "," << p3[1] << "," << p3[2] << "]" << endl;
 }
 
+char * strsep( char ** stringp, const char * delim )
+{
+  char* start = *stringp;
+  char* p;
+
+  p = (start != NULL) ? strpbrk(start, delim) : NULL;
+
+  if (p == NULL)
+  {
+    *stringp = NULL;
+  }
+  else
+  {
+    *p = '\0';
+    *stringp = p + 1;
+  }
+
+  return start;
+}
+
 void parsePolygon(std::string msg,
                   MaterialFile& materials,
                   std::string& id,
