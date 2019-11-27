@@ -122,7 +122,7 @@ Socket::~Socket()
     // Closing corresponding socket � command socket()
     // ********************************************************
 #ifdef _WIN32
-    err=closesocket(id_socket_in);
+    err=closesocket(m_socket_id);
 #else
     err=close(m_socket_id);
 #endif
