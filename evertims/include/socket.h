@@ -61,7 +61,7 @@ typedef int SOCKET;
 
 #else
 #include <winsock2.h>
-#include <Ws2tcpip.h>
+#include <ws2tcpip.h>
 WSADATA initialisation_win32; // Variable permettant de récupérer la structure d'information sur l'initialisation
 WSADATA initialisation2_win32; // Variable permettant de récupérer la structure d'information sur l'initialisation
 #endif
