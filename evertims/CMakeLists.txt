@@ -36,7 +36,9 @@ target_include_directories(evertims
 target_link_libraries(evertims
   PRIVATE
     evert::evert
-    Threads::Threads)
+    Threads::Threads
+    wsock32
+    ws2_32)
 
 target_compile_definitions(evertims
   PRIVATE
@@ -49,7 +51,6 @@ target_compile_features(evertims
 target_compile_options(evertims
   PRIVATE
     -Wfatal-errors)
-
 
 install(TARGETS evertims
   LIBRARY DESTINATION lib
