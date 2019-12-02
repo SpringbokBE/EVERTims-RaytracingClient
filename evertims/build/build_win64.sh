@@ -91,23 +91,6 @@ function find_mxe_cmake
   fi
 }
 
-function find_mxe_libgnurx
-# Find the MXE `libgnurx` package (M Cross Environment).
-{
-  if [ -f "$MXE_PATH/usr/x86_64-w64-mingw32.shared/installed/libgnurx" ]
-  then
-      echo -e "\e[32m-- Found MXE \`libgnurx\` package!"
-  else
-    echo -e "\e[31m-- Didn't find the \`libgnurx\` package from MXE!"
-    echo -e "\e[35m-- Please make sure you've built the MXE \`libgnurx\` package for target \`x86_64-w64-mingw32.shared\`!"
-    read -rsn1 -p $'\e[35m-- Do you want to build it now? This might take a while (~1 min)! (yY/nN)]\n' want_build_mxe_libgnurx
-    case "$want_build_mxe_libgnurx" in
-      y|Y) build_mxe_package libgnurx;;
-      *) report_failure;;
-    esac
-  fi
-}
-
 function download_mxe
 # Download the MXE (M Cross Environment).
 {
@@ -233,7 +216,6 @@ report_start
 find_mxe
 find_mxe_cc
 find_mxe_cmake
-find_mxe_libgnurx
 
 build_evertims
 install_evertims
