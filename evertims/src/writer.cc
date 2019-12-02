@@ -118,16 +118,16 @@ m_maxAmount(1024 * 1024)
         m_host = addr;
     }
 
-    // TODO : Is this a suitable error buffer size?
-    // See https://linux.die.net/man/3/regcomp.
-    char errbuf[1024];
-    int err = regcomp ( &m_preq, m_pattern, REG_EXTENDED | REG_NOSUB );
-
-    if( err != 0 )
-    {
-        regerror ( err, &m_preq, errbuf, 1024 );
-        cout << "Regcomp error: " << errbuf << endl;
-    }
+    try
+  	{	
+  		m_preq = regex( m_pattern, regex_constants::extended |
+                                 regex_constants::nosubs );
+  	}
+  	catch( const regex_error & err )
+  	{
+  		cout << "Regex error: " << err.code()	<< endl;
+  		throw;
+  	}
 
     cout << "Initializing new writer. Path pattern = " << m_pattern
     << ". Order: " << m_minOrder << " - " << m_maxOrder
@@ -136,13 +136,13 @@ m_maxAmount(1024 * 1024)
 
 ////////////////////////////////////////////////////////////////////////////////
 
-bool Writer::match( const char* id )
+bool Writer::match( const char * id )
 {
-    int result = regexec ( &m_preq, id, 0, 0, 0);
+    bool matches = regex_match( id, m_preq );
 
-    cout << "Match of " << id << " resulted " << result << " for " << m_pattern << endl;
+    cout << "Match of " << id << " resulted " << matches << " for " << m_pattern << endl;
 
-    return (result == 0);
+    return matches;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

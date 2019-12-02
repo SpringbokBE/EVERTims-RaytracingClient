@@ -37,7 +37,7 @@
 
 #include <map>
 #include <cstring>
-#include <regex.h>
+#include <regex>
 
 #include "elPathSolution.h"
 #include "OSC-client.h"
@@ -78,7 +78,7 @@ private:
     
     char *m_host;
     char *m_pattern;
-    regex_t m_preq;
+    std::regex m_preq;
 };
 
 class AuralizationWriter : public Writer
