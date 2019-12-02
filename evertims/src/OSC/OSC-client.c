@@ -59,7 +59,7 @@ MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
 char *OSC_errorMessage;
 
 
-static int strlen(char *s);
+// static int strlen(char *s);
 static int OSC_padString(char *dest, char *str);
 static int OSC_padStringWithAnExtraStupidComma(char *dest, char *str);
 static int OSC_WritePadding(char *dest, int i);
@@ -424,11 +424,11 @@ int OSC_writeStringArg(OSCbuf *buf, char *arg) {
 
 /* String utilities */
 
-static int strlen(char *s) {
-    int i;
-    for (i=0; s[i] != '\0'; i++) /* Do nothing */ ;
-    return i;
-}
+// static int strlen(char *s) {
+//     int i;
+//     for (i=0; s[i] != '\0'; i++) /* Do nothing */ ;
+//     return i;
+// }
 
 #define STRING_ALIGN_PAD 4
 
