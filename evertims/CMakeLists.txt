@@ -16,7 +16,7 @@ set(CMAKE_THREAD_PREFER_PTHREAD ON)
 project(evertims
   VERSION 1.0
   DESCRIPTION "C++ Raytracing client"
-  LANGUAGES CXX)
+  LANGUAGES C CXX)
 
 # Specify the executable.
 add_executable(evertims ${_SOURCES})
