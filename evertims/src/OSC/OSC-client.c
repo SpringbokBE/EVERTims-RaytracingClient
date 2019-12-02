@@ -46,6 +46,11 @@ MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
 
 #include "OSC-client.h"
 
+// To enable htonl() functionality.
+#ifdef __Windows
+  #include <winsock2.h>
+#endif
+
 #ifdef TARGET_API_MAC_CARBON
 /* KLUDGE for OSX: */
 #define htonl(x) (x)
