@@ -30,8 +30,6 @@
  * IRCAM-CNRS-UPMC UMR9912 STMS
  *
  ************************************************************************/
- 
-
 #include <iostream>
 
 #include "socket.h"
@@ -51,7 +49,7 @@ void Socket::openSocket()
     
     m_socket_id = socket(AF_INET,SOCK_DGRAM,0);
     
-    if( m_socket_id == -1 ){ printf("Sorry, can't create socket due to error\n"); }
+    if( m_socket_id == INVALID_SOCKET ){ printf("Sorry, can't create socket due to error\n"); }
     else{ printf("socket      : OK\n"); }
 }
 
@@ -98,14 +96,17 @@ Socket::Socket(char *host)
     m_sockaddr.sin_family = AF_INET;
     m_sockaddr.sin_port = htons(port); // Listen on the Port
     
-    hostinfo=gethostbyname(host);
-    if( hostinfo==NULL )
-    {
-        fprintf( stdout , "Unknown host %s \n", host);
-        return;
-    }
+    // hostinfo=gethostbyname(host);
+    // if( hostinfo==NULL )
+    // {
+    //     fprintf( stdout , "Unknown host %s \n", host);
+    //     return;
+    // }
+    // 
+    // m_sockaddr.sin_addr=*(struct in_addr*)hostinfo->h_addr;
+    // 
     
-    m_sockaddr.sin_addr=*(struct in_addr*)hostinfo->h_addr;
+    InetPton(AF_INET, (LPCSTR)host, &m_sockaddr.sin_addr.s_addr);
     
     openSocket();
 }

@@ -43,8 +43,9 @@ target_link_libraries(evertims
 
 target_compile_definitions(evertims
   PRIVATE
-    __${CMAKE_SYSTEM_NAME})
-
+    __${CMAKE_SYSTEM_NAME}
+    _WIN32_WINNT=0x0600) # To be able to use InetPton from ws2tcpip.h. (See openclassrooms.com/forum/sujet/inetpton-sous-qt-avec-mingw)
+    
 target_compile_features(evertims
   PRIVATE
     cxx_std_11)
