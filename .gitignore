@@ -10,6 +10,8 @@ Thumbs.db
 
 # Build directories #
 #####################
+build/win64
+
 evert/build/linux
 evert/build/macos
 evert/build/win64
