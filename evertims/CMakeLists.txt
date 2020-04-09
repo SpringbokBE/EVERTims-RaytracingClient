@@ -38,8 +38,7 @@ target_link_libraries(evertims
     evert::evert
     Threads::Threads
     wsock32
-    ws2_32
-    -static-libstdc++)
+    ws2_32)
 
 target_compile_definitions(evertims
   PRIVATE

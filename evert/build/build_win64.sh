@@ -156,7 +156,7 @@ function install_evert
 
   cd $BUILD_DIR/win64
   make install | indent
-
+  
   echo -e "\e[35m-- Finished EVERT installation..."
 }
 

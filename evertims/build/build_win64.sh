@@ -155,8 +155,12 @@ function install_evertims
   echo -e "\e[35m-- Starting EVERTims installation..."
 
   cd $BUILD_DIR/win64
-  make DESTDIR="/home/springbok/Desktop" install | indent
+  make install | indent
 
+  cp $MXE_PATH/usr/x86_64-w64-mingw32.shared/bin/libgcc_s_seh-1.dll $BUILD_DIR/win64/
+  cp $MXE_PATH/usr/x86_64-w64-mingw32.shared/bin/libstdc++-6.dll $BUILD_DIR/win64/
+  cp $MXE_PATH/usr/x86_64-w64-mingw32.shared/bin/libwinpthread-1.dll $BUILD_DIR/win64/
+  
   # See https://unix.stackexchange.com/questions/14270/get-exit-status-of-process-thats-piped-to-another.
   if [ ${PIPESTATUS[0]} -gt 0 ]
   then
