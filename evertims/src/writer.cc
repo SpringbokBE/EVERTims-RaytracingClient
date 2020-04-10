@@ -138,7 +138,7 @@ m_maxAmount(1024 * 1024)
 
 bool Writer::match( const char * id )
 {
-    bool matches = regex_match( id, m_preq );
+    bool matches = regex_search( id, m_preq );
 
     cout << "Match of " << id << " resulted " << matches << " for " << m_pattern << endl;
 
